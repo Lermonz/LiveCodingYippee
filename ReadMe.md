@@ -1,2 +1,8 @@
-# HIIII!!!!!!!!
-hiiiiii hi yippee hi hiii (^w^)/
+# the reading!!!!!!!!
+**Things new to me**
+ - The overall vibe of how live coding is thought about is not what i was expecting going into this. The specific phrasing of it being "changing the software while it's running" or "like tending to a plant" was kind of eye opening to how live coding is much more of a performance and is scarier, more vulnerable than just coding generally.
+ - Talking about writing software is a kind of performance is a new concept to me. maybe my idea of what a performance can be in general is rather limited, but i usually dont think of constructing or making something to be a performance. Like watching someone sew a scarf isn't somethign i would consider a performance normally (but i do enjoy watching people make things, so maybe it is hmm)
+
+**Things not new/was kinda familiar to me**
+ - I was aware that the code pretty much is "required" to be on screen for a live coding show, since that's what i saw at both of the ones i went to, admittedly i kinda just saw it as a cool vibe then, (which is true, seeing the code live is cool) but it's more about the openness of it than the aesthetic choice
+ - Demystifying the stuff behind computers is important to me, as it clearly also is for live coders. I hate the deliberate obfuscation of tech terminology by big companies, making computers seem more obtuse and unreachable to the average person as possible. It's dumb! It's not unreachable! 
