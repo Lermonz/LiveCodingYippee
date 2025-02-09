@@ -1,3 +1,5 @@
+### Final code for strudel patch is at the bottom :3
+
 I looked at some of the strudel documentation for examples of what a patch looks like, so i can at least structure it similarly
 
 [this one](https://www.youtube.com/watch?v=oqyAJ4WeKoU) caught my eye and i looked at their code at around 15:30.
@@ -74,4 +76,3 @@ stack(
   .delay(".09:.12:.38")
 ).cpm(110/4)
 ```
-i think that's the final version of it i'll send in, i think it sounds pretty cool and interesting
