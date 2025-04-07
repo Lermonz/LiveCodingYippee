@@ -1,0 +1,11 @@
+d1 $ n "0 2 4 6 0 2 6 8"
+  # sound "yeah"
+  # delay "0.5"
+  # delaytime "0.575"
+--  # djf sine
+--d1 is for naming each orbit (aka channel)
+-- orbit starts after the $
+
+setcps(90/60/4)
+
+hush
