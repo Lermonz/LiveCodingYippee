@@ -1,0 +1,10 @@
+d1 $ randslice 4 $ striate 4 $ n (run 10)
+  # s "gab"
+
+d1 $ n (run 6)
+  # s ("mario")
+
+d1 $ n "2 4@2 2 7@2 [5 4] 0"
+  # s ("Ender")
+
+hush
