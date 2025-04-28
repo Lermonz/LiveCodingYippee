@@ -1,0 +1,210 @@
+do
+  let pianoChords = "<[f4,c5,<bf4 a4>] [f4,bf4,g4]>/2"
+  let melody = "g5 a5 e6 d6 bf5 a5"
+  let atk = pF "atk"
+  let fb1 = pF "fb1"
+  let fb2 = pF "fb2"
+  let dirt = pF "dirt"
+  hush
+
+hush
+
+do
+  resetCycles
+  d10 $ n "0*8"
+    # s "supernoise"
+    # slow 16 (lpf (range 100 2500 saw))
+    # gain "<0.5@16 0.7@16>"
+  d1 $ jux (echo 2 1 0.8) $ struct "<t f>"
+    $ n pianoChords
+    # s "Zashy"
+    # atk 0.6
+    # release 1.8
+    # phaserdepth 20
+    # phaserrate 5
+    # amp 0.05
+    # sustain 8
+
+do
+  all $ qtrigger
+  d3 $ fast 2
+    $ struct ("t f f t f f <f t> f")
+    -- $ n "<f1 g1>/2"
+    $ n "f1 f2"
+    # s "Ender"
+    # fb1 8
+    # fb2 2
+    # sustain 1
+    # release 0.7
+    # amp 0.32
+  d11 $ sometimesBy 0.12 (ply "<1 2>") $ s "ab:9*8"
+    # bpf 5500
+    # bpq 0.08
+    # amp 0.35
+    # speed (range 0.95 1.03 rand)
+  d16 $ qtrigger $ echo 8 0.125 0.75 $ slow 2 $ n "<~!4 5 [0 4] [4*4 ~] 1>"
+    # end "<1 1 [0.37 1@2] 1>"
+    # s "honeymustardextras"
+    # amp 1.4
+
+hush
+
+do
+  resetCycles
+  hush
+  d16 $ echo 8 0.01 0.6 $ n "1*8"
+    # s "honeymustardextras"
+    # begin 0.7
+    # amp "<[0.7 0.5 0.35 0.1] [0.05 0.01 0.005 0.001] 0@3>"
+
+do
+  resetCycles
+  all $ qtrigger
+  d3 $ fast 2
+    $ struct ("t f f t f f <f t> f")
+    $ n "f1 f2" # s "Ender"
+    # fb1 8 # fb2 2 # sustain 1
+    # release 0.7 # amp 0.4
+  d11 $ sometimesBy 0.12 (ply "<1 2>") $ s "ab:9*8"
+    # bpf 5500 # bpq 0.08 # amp 0.35
+    # speed (range 0.95 1.03 rand)
+  d16 $ ur 24 "reggie@7 mustard reggie@3 mustard@4 reggie@2 mustard reggie mustard reggie@2 mustard@2"
+    [("reggie", echo 4 0.08333 0.75 $ n ("0") |+ n (irand 18)
+      # s "honeymustard" # amp 1.75 # speed 0.95),
+    ("mustard", echo 4 0.0833 0.75 $ n ("<2 10> <13 12> <10 2> <6 <8 7>>")
+      # s "honeymustard" # amp 1.4 # begin 0.615 # speed 0.95)][]
+  d1 $ rolledBy ("0.16 -0.04") $ struct ("f f t f f t f t")
+    $ n pianoChords
+    # s "Zashy"
+    # atk 0
+    # release 0.01
+    # amp 0.075
+    # sustain 8
+  d10 $ ur 12 "reggie@8 plyer@4" [("reggie", slow 2 $ echo 2 0.125 0.5 $ s (fit 0 ["auto:0", "auto:2"] "0@2 1 0 0 1@2 0@2 0 1@2 0@2 0@2")
+    # amp "[0.4 0.25]*4"), ("plyer", sometimesBy 0.3 (ply "<2 6 <4 3>>*4") $ slow 2 $ echo 2 0.125 0.5
+    $ s (fit 0 ["auto:0", "auto:2"] "0 1@2 0@2 0@2 0@3 1@2 0@2 0@2")
+    # amp "[0.3 0.4]*4")][]
+
+hush
+
+do
+  d3 $ fast 2
+    $ struct ("t f@5 t f@6 t f@2 t f@2 ")
+    $ n "f1 [g1 <f2!2 bf1!2>]" # s "Ender"
+    # fb1 8 # fb2 2 # sustain 1
+    # release 0.7 # amp 0.4
+  d10 $ echo 4 0.125 0.2 $ s (fit 0 ["auto:0", "auto:2"] "0@2 1 0 0 1@2 0@2 0 1@2")
+    # amp "[0.4 0.25]*4"
+  d16 $ echo 4 0.0833 0.75 $ n ("<2 10> <13 12> <6 <8 7>>")
+    # s "honeymustard"
+    # amp 1.4
+    # begin 0.615
+    # speed 0.95
+  d1 $ rolledBy ("0.16 -0.04") $ struct ("f@3 t f@3 t f@2 t f")
+    $ n pianoChords
+    # s "Zashy"
+    # atk 0
+    # release 0.01
+    # amp 0.075
+    # sustain 8
+
+xfade 16 $ s "honeymustard" # silence
+
+do
+  d5 $ qtrigger $ fast 2 $ n melody |+ n ("0@6 <0 <[0 3] 7>>@2")
+    # s "Skylar"
+    -- # sustain 1
+    # amp 0.35
+    # speed 0.86
+    # accelerate "<25 2@7> 2 <2@4 10 2@3> 2@3 <2@6 12 2> 2"
+    # lpf 2000
+  d4 $ fast 2 $ n melody |+ n ("0@6 <0 <[0 3] 7>>@2")
+    # s "iDoge"
+    # amp 0.1
+    # decay 0.075
+    # release 0.435
+
+xfade 3 $ s "Ender" # silence
+xfade 4 $ s "iDoge" # silence
+xfade 5 $ s "Skylar" # silence
+
+do
+  hush
+  resetCycles
+  let pianoChords = "<[ef4,bf4,c5] [d4,bf4,c5] [d4,g4,c5], [f4,g4,bf4]>"
+  d10 $ slow 2 $ echo 2 0.125 0.5 $ s (fit 0 ["auto:0", "auto:2"] "0@2 1 0 0 1@2 0@2 0 1@2 0@2 0@2")
+    # amp "[0.4 0.25]*4"
+  d1 $ n pianoChords
+    # s "Zashy"
+    # atk 0.01
+    # release 1.2
+    # amp 0.055
+    # sustain 4
+  d16 $ ur 24 "~@8 playit@24"
+    [("playit", slice 24 "[4 5 6 7 <~@3 [4 5 6 7]>@4] [8 9 10 ~ ~!4] [11 12 13 ~ ~!4] [14 15 16 ~ 17 18 19 ~]" $ n ("6")
+    # s "honeymustard"
+    # amp 0.9
+    # speed 0.95)]
+    []
+    -- # silence
+
+hush
+
+
+
+-- TESTING STUFF DOWN HERE NOT PART OF THE PERFORMANCE
+  -- # crush "<12@15 <12 5>>"
+  -- # room 0.2
+  -- # size 0.97
+
+hush
+
+let pats =
+      [
+        ("a", stack[n ("0") |+ n (irand 18)
+          # s "honeymustard"
+          # amp 0.9
+          # speed 0.95]
+        ),
+        ("b", stack[n ("<2 10> <13 12> <6 <8 7>>")
+          # s "honeymustard"
+          # amp 0.9
+          # begin 0.615
+          # speed 0.95]
+        ),
+        ("c", stack[slice 24 "[4 5 6 7 <~@3 [4 5 6 7]>@4] [8 9 10 ~ ~!4] [11 12 13 ~ ~!4] [14 15 16 ~ 17 18 19 ~]" $ n ("6")
+          # s "honeymustard"
+          # amp 0.9
+          # speed 0.95]
+        )
+      ]
+in
+d1 $ ur 12 "a b c" pats []
+
+d1 $ ur 16 "grug@3 grug:chunkit"
+  [("grug", stack[s (fit 0 ["auto:0", "auto:2"] "0@2 1 0 0 1@2 0@2 0 1@2 0@2 0@2"),
+  sometimesBy 0.12 (ply "<1 2>") $ s "ab:9*8" # speed (range 0.97 1.02 rand)]),
+  ("ride", n ("0") |+ n (irand 18)
+    # s "honeymustard"
+    # amp 0.9
+    # speed 0.95)]
+  [("chunkit", (# crush 6))]
+
+hush
+
+d16 $ echo 4 0.08333 0.75 $ n ("0") |+ n (irand 18)
+  # s "honeymustard"
+  # amp 1.75
+  # speed 0.95
+d16 $ echo 4 0.0833 0.75 $ n ("<2 10> <13 12> <6 <8 7>>")
+  # s "honeymustard"
+  # amp 1.4
+  # begin 0.615
+  # speed 0.95
+
+d1 $ seqP [(0,4,stack[n ("0") |+ n (irand 18)
+  # s "honeymustard"]),
+  (5, 8, stack[n ("<2 10> <13 12> <6 <8 7>>")
+    # s "honeymustard"])]
+
+setcps (125/60/4)

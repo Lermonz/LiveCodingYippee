@@ -17,21 +17,23 @@ let atk = pF "atk"
     # amp 0.66
     # decay 0.4
 
-do
+
   d2 $ fast 2 $ rolledBy "<0.1 0@2> 0" $ struct ("f t [f t] f") $ n pianoChords
     # s "Ender"
     # sustain 0.5
     # amp 0.31
     # fb1 6
     # fb2 1
-    # rel "0.6 0.48"
+    # release "0.4 0.3"
+
   d5 $ fast 2 $ n pianoChords
     # s "Zashy"
     # sustain 8
     # amp 0.15
     -- # decay 0.4
-    # atk 0.6
+    # atk 0.24
     # rel 0.9
+    # silence
 
   d3 $ every' 4 3 (fix (ply 2) (s "gab:3")) $ cat [s "[gab:3 sd]*2", s "gab:3 sd [gab:3 [~ gab:3]] sd"]
     # lpf 12000
@@ -39,17 +41,30 @@ do
     # end 0.8
     # room 0.4
 
-  d4 $ n "<c4@2 e4 g4 ~@2 <c5 bf4>@2 <[[d5|a4] ~ bf4 ~] [g4 ~@3]>@4 [[~@2 a4 ~]|[a4 ~@3]|[f4 ~@3]|[~@4]]@4 >*16"
+  d3 $ slow 2 $ n "-10 8 -5 8 -10 8 [-5 [~ -5]] 8"
+    # s "supernoise"
+    # amp 0.13
+    # accelerate "<0 0.05>*8"
+    # sustain "<0.11 0.15>*8"
+
+  d4 $ off 0.5 (# amp 0.5) $ n "<c4@2 e4 g4 ~@2 <c5 bf4>@2 <[[d5|a4] ~ bf4 ~] [g4 ~@3]>@4 [[~@2 a4 ~]|[a4 ~@3]|[f4 ~@3]|[~@4]]@4 >*16"
   |+ n "12"
     # s "Solace"
     -- # resonance (fast 1.82 $ range 0.3 0.9 sine)
-    # sustain 0.8
+    # sustain 5
     # delayfb 0.5
     # delaytime 0.1
     # amp 0.78
     # lpf 1200
     # fb1 0.35
     # fb2 3
+
+  d4 $ off 0.5 (# amp 0.5)
+    $ n "<c4@2 e4 g4 ~@2 <c5 bf4>@2 <[[d5|a4] ~ bf4 ~] [g4 ~@3]>@4 [[~@2 a4 ~]|[a4 ~@3]|[f4 ~@3]|[~@4]]@4 >*16"
+  |+ n "12"
+    # s "Azu"
+    # release 0.24
+    # sustain 1
 
 setcps(100/60/4)
 

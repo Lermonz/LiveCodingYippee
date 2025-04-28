@@ -1,0 +1,7 @@
+s0.initVideo("https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2duNm1lcjQzNWlzaWRuZWxka2FueXFzbGE1N3hzdXNpcWdkdWV0cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/XZyZPUVYAot4PWzwEp/giphy.mp4")
+src(s0).color(0.65,0.61,0.31)
+.scale(({time})=>Math.sin(time*0.3)*0.03+0.1)
+.modulate(osc(5,0.25,0.9))
+.modulate(noise(0.6,0.5))
+.rotate(({time})=>(time%360)/4)
+.blend(osc(12,0.1,1.6),0.25).out(o0)

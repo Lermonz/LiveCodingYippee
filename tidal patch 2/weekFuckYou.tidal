@@ -1,0 +1,12 @@
+d1 $ note (scale "minPent" $ floor <$> (range 0 16 sine))
+  # s "superchip"
+
+d1 $ off 0.5 (# squiz 2)
+  $ n "0 2 4 6"
+  # s "gabor"
+
+hush
+
+import Sound.Tidal.Chords
+chordList
+scaleList
